@@ -7,6 +7,7 @@ public class AnimateHandOnInput : MonoBehaviour
 {
     public InputActionProperty pinchAnimatonAction;
     public InputActionProperty gripAnimationAction;
+
     public Animator handAnimator;
     void Start()
     {
@@ -20,6 +21,4 @@ public class AnimateHandOnInput : MonoBehaviour
         float gripValue = gripAnimationAction.action.ReadValue<float>();
         handAnimator.SetFloat("Grip", gripValue);
     }
-
-
 }
