@@ -15,9 +15,9 @@ TagManager:
   - UI
   - Player
   - Interactable
-  - 
-  - 
-  - 
+  - Left Hand Physics
+  - Right Hand Physics
+  - NonPhysics Hand Layer
   - 
   - 
   - 
@@ -42,4 +42,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: NonPhysics Hand Layer
+    uniqueID: 660925603
     locked: 0
