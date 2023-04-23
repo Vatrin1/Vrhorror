@@ -13,6 +13,9 @@ public class Flashlight : MonoBehaviour
     public bool isButtonPressed = false;
     public bool check = false;
     private bool c = false;
+    public int charge = 0;
+    public int maxCharge = 0;
+    private bool chargeCheck = false;
     private XRController controller;
     private XRBaseInteractor interactor;
 
@@ -20,6 +23,7 @@ public class Flashlight : MonoBehaviour
 
     private void Awake()
     {
+        charge = maxCharge;
         light.SetActive(false);
         controller = GetComponent<XRController>();
         grabInteractable = GetComponent<XRGrabInteractable>();
@@ -84,6 +88,46 @@ public class Flashlight : MonoBehaviour
                 light.SetActive(false);
             }
         }
+        if (isActive)
+        {
+            if (charge == 0)
+                isActive = false;
+            if (!chargeCheck)
+            {
+                StartCoroutine(chargeDown(1f));
+                chargeCheck = true;
+            }
+        }
+        else
+        {
+            if (charge != 0)
+            {
+                if (!chargeCheck)
+                {
+                    StartCoroutine(chargeUp(2f));
+                    chargeCheck = true;
+                }
+            }
+        }
+
+        
+    }
+
+    IEnumerator chargeDown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (charge>0)
+            charge--;
+        chargeCheck = false;
+        
+    }
+
+    IEnumerator chargeUp(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (charge < maxCharge)
+            charge++;
+        chargeCheck = false;
     }
 
 }
