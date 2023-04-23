@@ -9,6 +9,7 @@ public class HandPresencePhysics : MonoBehaviour
     public Renderer nonPhysicalHand;
     public float showNonPhysicalHandDistance = 0.05f;
     private Collider[] handColliders;
+    public Transform hand;
 
     void Start()
     {
@@ -49,17 +50,16 @@ public class HandPresencePhysics : MonoBehaviour
         {
             nonPhysicalHand.enabled = false;
         }
-    }
 
-    void FixedUpdate()
-    {
         rb.velocity = (target.position - transform.position) / Time.fixedDeltaTime;
 
         Quaternion rotationDifference = target.rotation * Quaternion.Inverse(transform.rotation);
+
         rotationDifference.ToAngleAxis(out float angleInDegree, out Vector3 rotationAxis);
 
         Vector3 rotationDifferenceInDegree = angleInDegree * rotationAxis;
 
         rb.angularVelocity = (rotationDifferenceInDegree * Mathf.Deg2Rad / Time.fixedDeltaTime);
+        
     }
 }
