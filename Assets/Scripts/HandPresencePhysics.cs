@@ -59,6 +59,13 @@ public class HandPresencePhysics : MonoBehaviour
 
         Vector3 rotationDifferenceInDegree = angleInDegree * rotationAxis;
 
-        rb.angularVelocity = (rotationDifferenceInDegree * Mathf.Deg2Rad / Time.fixedDeltaTime);
+        if (rotationDifferenceInDegree.magnitude == Mathf.Infinity || rotationDifferenceInDegree.magnitude == Mathf.NegativeInfinity)
+        {
+            rb.angularVelocity = Vector3.zero;
+        }
+        else
+        {
+            rb.angularVelocity = (rotationDifferenceInDegree * Mathf.Deg2Rad / Time.fixedDeltaTime);
+        }
     }
 }
