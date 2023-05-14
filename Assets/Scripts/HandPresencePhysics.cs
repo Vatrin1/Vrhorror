@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandPresencePhysics : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class HandPresencePhysics : MonoBehaviour
     public Renderer nonPhysicalHand;
     public float showNonPhysicalHandDistance = 0.05f;
     private Collider[] handColliders;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,6 +19,7 @@ public class HandPresencePhysics : MonoBehaviour
 
     public void EnableHandCollider()
     {
+
         foreach (var item in handColliders)
         {
             item.enabled = true;
