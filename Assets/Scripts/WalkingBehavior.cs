@@ -20,7 +20,7 @@ public class WalkingBehavior : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(player.transform.position);
         float distance = Vector3.Distance(animator.transform.position, player.position);
 
         if (distance < attackRange)

@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Flashlight : MonoBehaviour
 {
     public GameObject light;
+    public GameObject vlight;
     public InputActionProperty pinchAnimatonActionLeft;
     public InputActionProperty pinchAnimatonActionRight;
     public bool isActive = false;
@@ -25,6 +26,7 @@ public class Flashlight : MonoBehaviour
     {
         charge = maxCharge;
         light.SetActive(false);
+        vlight.SetActive(false);
         controller = GetComponent<XRController>();
         grabInteractable = GetComponent<XRGrabInteractable>();
     }
@@ -50,6 +52,7 @@ public class Flashlight : MonoBehaviour
     {
         c = false;
         light.SetActive(false);
+        vlight.SetActive(false);
         isActive = false;
         isButtonPressed = false;
     }
@@ -82,10 +85,12 @@ public class Flashlight : MonoBehaviour
             if (isActive)
             {
                 light.SetActive(true);
+                vlight.SetActive(true);
             }
             else
             {
                 light.SetActive(false);
+                vlight.SetActive(false);
             }
         }
         if (isActive)
