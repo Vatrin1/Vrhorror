@@ -17,7 +17,7 @@ public class RigidbodyOnTouch : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<XRController>();
-        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<XRGrabInteractableToAttach>();
     }
 
     private void OnEnable()
