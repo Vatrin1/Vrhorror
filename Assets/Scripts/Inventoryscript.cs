@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 [System.Serializable]
 
@@ -12,8 +13,12 @@ public class inventory
 }
 public class Inventoryscript : MonoBehaviour
 {
+    public Transform Lefttarget;
+    public Transform Righttarget;
     public GameObject hmd;
     public inventory[] _inventory;
+    public float showInventoryDistance = 0.05f;
+    public Renderer nonInventory;
 
     private Vector3 hmdPosition;
     private Quaternion hmdRotation;
@@ -27,6 +32,28 @@ public class Inventoryscript : MonoBehaviour
             UpdateInventoryHeight(inventory);
         }
         UpdateInventory();
+
+        float leftdistance = Vector3.Distance(transform.position, Lefttarget.position);
+
+        if (leftdistance < showInventoryDistance)
+        {
+            nonInventory.enabled = true;
+        }
+        else
+        {
+            nonInventory.enabled = false;
+        }
+
+        float rightdistance = Vector3.Distance(transform.position, Righttarget.position);
+
+        if (rightdistance < showInventoryDistance)
+        {
+            nonInventory.enabled = true;
+        }
+        else
+        {
+            nonInventory.enabled = false;
+        }
     }
 
     private void UpdateInventoryHeight (inventory inventory)
