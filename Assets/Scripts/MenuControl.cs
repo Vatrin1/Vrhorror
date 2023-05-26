@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuControl : MonoBehaviour
 {
+    public bool button = false;
     public void StartBtn()
     {
-        SceneManager.LoadScene("MainLocation");
+        button = true;
     }
-    public void BackBtn()
+    public void ExitBtn()
     {
-        SceneManager.LoadScene("MenuLocation");
+            Application.Quit();
     }
 }

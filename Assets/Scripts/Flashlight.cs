@@ -8,6 +8,7 @@ public class Flashlight : MonoBehaviour
 {
     public GameObject light;
     public GameObject vlight;
+    public GameObject battery;
     public InputActionProperty pinchAnimatonActionLeft;
     public InputActionProperty pinchAnimatonActionRight;
     public bool isActive = false;
@@ -19,6 +20,7 @@ public class Flashlight : MonoBehaviour
     private bool chargeCheck = false;
     private XRController controller;
     private XRBaseInteractor interactor;
+    private Transform BatteryScale;
 
     private XRGrabInteractable grabInteractable;
 
@@ -29,6 +31,7 @@ public class Flashlight : MonoBehaviour
         vlight.SetActive(false);
         controller = GetComponent<XRController>();
         grabInteractable = GetComponent<XRGrabInteractable>();
+        
     }
 
     private void OnEnable()
@@ -116,6 +119,11 @@ public class Flashlight : MonoBehaviour
         }
 
         
+    }
+
+    void FixedUpdate()
+    {
+        //battery.transform.localScale = new Transform(BatteryScale.x, charge * 0.01 , BatteryScale.z);
     }
 
     IEnumerator chargeDown(float time)
