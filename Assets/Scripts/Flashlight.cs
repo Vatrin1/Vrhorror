@@ -30,8 +30,7 @@ public class Flashlight : MonoBehaviour
         light.SetActive(false);
         vlight.SetActive(false);
         controller = GetComponent<XRController>();
-        grabInteractable = GetComponent<XRGrabInteractable>();
-        
+        grabInteractable = GetComponent<XRGrabInteractable>();   
     }
 
     private void OnEnable()
