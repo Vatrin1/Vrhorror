@@ -11,12 +11,12 @@ public class TposeBehavior : StateMachineBehaviour
     private XRController controller;
     private XRBaseInteractor interactor;
     private XRGrabInteractable grabInteractable;
-    private GameObject StartItem;
+    //private GameObject StartItem;
     private void Awake()
     {
 
         //grabInteractable = GetCompanent<XRGrabInteractable>();
-        StartItem = GameObject.FindGameObjectWithTag("SpecialItem");
+        //StartItem = GameObject.FindGameObjectWithTag("SpecialItem");
     }
 
     private void OnEnable()
@@ -43,7 +43,7 @@ public class TposeBehavior : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (c == false && !StartItem.CompareTag("SpectialItem"))
+        //if (c == false && !StartItem.CompareTag("SpectialItem"))
         {
             animator.SetBool("IsWalking", false);
         }
@@ -52,7 +52,7 @@ public class TposeBehavior : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (c == true && StartItem.CompareTag("SpectialItem"))
+        //if (c == true && StartItem.CompareTag("SpectialItem"))
         {
             animator.SetBool("IsWalking", true);
         }
