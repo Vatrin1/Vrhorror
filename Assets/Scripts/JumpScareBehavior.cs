@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class JumpScareBehavior : StateMachineBehaviour
 {
     float timer;
-    List<Transform> points = new List<Transform>();
-    NavMeshAgent agent;
+    public EnemyAI jumpscare;
 
     Transform player;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -17,13 +17,11 @@ public class JumpScareBehavior : StateMachineBehaviour
         }
     }
 
-
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.transform.LookAt(player);
-        float distance = Vector3.Distance(animator.transform.position, player.position);
-        if (distance > 3)
+        if (jumpscare == true)
         {
+            animator.transform.LookAt(player);
             animator.SetBool("JumpScare", false);
         }
     }
