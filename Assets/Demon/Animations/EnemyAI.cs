@@ -41,6 +41,8 @@ public class EnemyAI : MonoBehaviour
         jumpscare = true;
         print(jumpscare);
         Invoke(nameof(DestroyEnemy), .1f);
+        player.transform.position = new Vector3(16f, 0f, 1f);
+        player.transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
     private void DestroyEnemy()

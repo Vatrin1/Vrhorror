@@ -19,10 +19,11 @@ public class JumpScareBehavior : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
         if (jumpscare == true)
         {
             animator.transform.LookAt(player);
-            animator.SetBool("JumpScare", false);
+            animator.SetBool("JumpScare", true);
         }
     }
 
