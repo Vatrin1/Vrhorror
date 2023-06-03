@@ -5,13 +5,17 @@ using System;
 
 public class PlayerEventManager : MonoBehaviour
 {
-    public static Action<string> InTrigger;
-
-    string test = "Ай! ";
-    private void OnTriggerEnter(Collider other)
+    public GameObject Enemy;
+    
+    private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Я в триггере");
-
-        InTrigger?.Invoke(test);
+        if (collider.CompareTag("Event"))
+        {
+            Invoke(nameof(DestroyEnemy), .1f);
+        }
+    }
+    private void DestroyEnemy()
+    {
+        Destroy(Enemy);
     }
 }

@@ -14,6 +14,7 @@ public class Flashlight : MonoBehaviour
     public bool isActive = false;
     public bool isButtonPressed = false;
     public bool check = false;
+    public bool enemySpawned;
     private bool c = false;
     public int charge = 0;
     public int maxCharge = 0;
@@ -59,8 +60,17 @@ public class Flashlight : MonoBehaviour
         isButtonPressed = false;
     }
 
-
-
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (isActive == true)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                Destroy(collider.gameObject);
+                enemySpawned = false;
+            }
+        }
+    }
     void Update()
     {
         if (c)
@@ -116,8 +126,6 @@ public class Flashlight : MonoBehaviour
                 }
             }
         }
-
-        
     }
 
     void FixedUpdate()
@@ -141,5 +149,6 @@ public class Flashlight : MonoBehaviour
             charge++;
         chargeCheck = false;
     }
+
 
 }

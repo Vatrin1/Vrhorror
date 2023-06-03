@@ -6,7 +6,9 @@ using Random = UnityEngine.Random;
 public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public Transform player;
+    private Player player;
+    private JumpscareProf JumpscareEnemy;
+    public AudioClip step;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -19,7 +21,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("XR Origin").transform;
+        player = FindObjectOfType<Player>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -34,7 +36,9 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(player.transform.position);
+        GetComponent<AudioSource>().clip = step;
+        GetComponent<AudioSource>().Play();
     }
     private void AttackPlayer()
     {
@@ -42,11 +46,15 @@ public class EnemyAI : MonoBehaviour
         print(jumpscare);
         Invoke(nameof(DestroyEnemy), .1f);
         player.transform.position = new Vector3(16f, 0f, 1f);
-        player.transform.rotation = new Quaternion(0, 0, 0, 0);
+        player.transform.LookAt(JumpscareEnemy.transform);
+        GetComponent<AudioSource>().clip = step;
+        GetComponent<AudioSource>().Stop();
     }
 
     private void DestroyEnemy()
     {
         Destroy(gameObject);
+        GetComponent<AudioSource>().clip = step;
+        GetComponent<AudioSource>().Stop();
     }
 }

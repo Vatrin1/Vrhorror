@@ -9,6 +9,7 @@ TagManager:
   - Actionable
   - SpecialItem
   - Enemy
+  - Event
   layers:
   - Default
   - TransparentFX
