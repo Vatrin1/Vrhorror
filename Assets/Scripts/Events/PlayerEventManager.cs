@@ -5,17 +5,21 @@ using System;
 
 public class PlayerEventManager : MonoBehaviour
 {
-    public GameObject Enemy;
-    
+    private Ai enemy;
+    public bool enemySpawned;
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Event"))
         {
-            Invoke(nameof(DestroyEnemy), .1f);
+            collider.CompareTag("Enemy");
+            Destroy(collider.gameObject);
+            enemySpawned = false;
+            FindObjectOfType<Player>().gameObject.GetComponent<SpawnManager>().enemySpawned = false;
         }
     }
     private void DestroyEnemy()
     {
-        Destroy(Enemy);
+        Destroy(enemy);
     }
 }

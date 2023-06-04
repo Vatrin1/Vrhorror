@@ -68,6 +68,7 @@ public class Flashlight : MonoBehaviour
             {
                 Destroy(collider.gameObject);
                 enemySpawned = false;
+                FindObjectOfType<Player>().gameObject.GetComponent<SpawnManager>().enemySpawned = false;
             }
         }
     }

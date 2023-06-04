@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     private Player player;
     private JumpscareProf JumpscareEnemy;
     public AudioClip step;
+    public Animator animator;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -44,17 +45,8 @@ public class EnemyAI : MonoBehaviour
     {
         jumpscare = true;
         print(jumpscare);
-        Invoke(nameof(DestroyEnemy), .1f);
-        player.transform.position = new Vector3(16f, 0f, 1f);
+        animator.SetTrigger("JumpScare");
+        player.transform.position = new Vector3(0f, 0f, -40f);
         player.transform.LookAt(JumpscareEnemy.transform);
-        GetComponent<AudioSource>().clip = step;
-        GetComponent<AudioSource>().Stop();
-    }
-
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
-        GetComponent<AudioSource>().clip = step;
-        GetComponent<AudioSource>().Stop();
     }
 }

@@ -7,13 +7,17 @@ using static UnityEngine.Random;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject theEnemy;
-    public GameObject Eventitem;
     public int enemyCount;
     public bool enemySpawned = false;
 
     private bool safetime = false;
     private bool c = false;
     private bool alltime = false;
+    private int chosespawntime;
+    private int delay;
+    private bool b = false;
+    private float angle = 360f;
+    private Player player;
 
     private Flashlight flashlight;
     private XRController controller;
@@ -24,18 +28,12 @@ public class SpawnManager : MonoBehaviour
     public AudioClip sp2;
     public AudioClip sp3;
 
-    private void Awake()
-    {
-        grabInteractable = GetComponent<XRGrabInteractable>();
-        controller = GetComponent<XRController>();
-        flashlight = GetComponent<Flashlight>();
-    }
-    private void OnGrab(XRBaseInteractor interactor)
+    public void OnGrab()
     {
         c = true;
     }
 
-    private void OnRelease(XRBaseInteractor interactor)
+    public void OnRelease()
     {
         c = false;
     }
@@ -47,72 +45,97 @@ public class SpawnManager : MonoBehaviour
             if (c)
             {
                 print("c = true");
-                if (Eventitem)
-                {
-                    print("fonarik");
-                    StartCoroutine(pretimer(5f));
-                    theEnemy.transform.position = Random.insideUnitCircle * 5;
-                    enemySpawned = true;
-                    alltime = true;
-                }
-                else
-                {
-                    print("ne fonarik");
-                }
+                StartCoroutine(timer(10f));
+                Instantiate(theEnemy);
+                theEnemy.transform.position = Random.insideUnitCircle * 5;
+                enemySpawned = true;
+                alltime = true;
+                b = true;
             }
         }
-        if (alltime == true && enemySpawned == false)
-        {
-            print("alltime robit");
-
-            int spawndelay = Random.Range(30, 121);
-            print(spawndelay);
-            StartCoroutine(spawntimer(spawndelay));
-
-            int chosespawntime = Random.Range(1, 4);
-            print(chosespawntime);
-
-            if (chosespawntime == 1)
-            {
-                print("spawntime = 1");
-                int n = Random.Range(3, 11);
-                print(n);
-                GetComponent<AudioSource>().clip = sp1;
-                GetComponent<AudioSource>().Play();
-                StartCoroutine(spawntimer(n));
-                theEnemy.transform.position = Random.insideUnitCircle * 5;
-                enemySpawned = true;
-            }
-            if (chosespawntime == 2)
-            {
-                print("spawntime = 2");
-                int n = Random.Range(30, 46);
-                print(n);
-                GetComponent<AudioSource>().clip = sp2;
-                GetComponent<AudioSource>().Play();
-                StartCoroutine(spawntimer(n));
-                theEnemy.transform.position = Random.insideUnitCircle * 5;
-                enemySpawned = true;
-            }
-            if (chosespawntime == 3)
-            {
-                print("spawntime = 3");
-                int n = Random.Range(3, 46);
-                print(n);
-                GetComponent<AudioSource>().clip = sp3;
-                GetComponent<AudioSource>().Play();
-                StartCoroutine(spawntimer(n));
-                theEnemy.transform.position = Random.insideUnitCircle * 5;
-                enemySpawned = true;
-            }
-        }
+        SpawnStart();
+        
     }
 
-    IEnumerator pretimer(float time)
+    private void SpawnStart()
     {
-        yield return new WaitForSeconds(time);
+        if (b)
+        {
+            if (alltime && !enemySpawned)
+            {
+                delay = Random.Range(30, 121);
+                print(delay);
+                StartCoroutine(timer(10f));
+
+
+                int spawners = Random.Range(1, 4);
+                print(spawners);
+
+                if (spawners == 1)
+                {
+                    spawn1();
+                }
+
+                if (spawners == 2)
+                {
+                    spawn2();
+                }
+
+                if (spawners == 3)
+                {
+                    spawn3();
+                }
+                enemySpawned = true;
+                b = false;
+            }
+        }
+        b = true;
     }
-    IEnumerator spawntimer(float time)
+
+
+
+    private void spawn1()
+    {
+        print("spawntime = 1");
+        int n;
+        n = Random.Range(3, 11);
+        print(n);
+        GetComponent<AudioSource>().clip = sp1;
+        GetComponent<AudioSource>().Play();
+        StartCoroutine(timer(3f));
+        print("timerpassed");
+        Instantiate(theEnemy);
+        theEnemy.transform.position = Random.insideUnitCircle * 5;
+        
+    }
+    private void spawn2()
+    {
+        print("spawntime = 2");
+        int n;
+        n = Random.Range(30, 46);
+        print(n);
+        GetComponent<AudioSource>().clip = sp2;
+        GetComponent<AudioSource>().Play();
+        StartCoroutine(timer(10f));
+        print("timerpassed");
+        Instantiate(theEnemy);
+        theEnemy.transform.position = Random.insideUnitCircle * 5;
+    }
+    private void spawn3()
+    {
+        print("spawntime = 3");
+        int n;
+        n = Random.Range(3, 46);
+        print(n);
+        GetComponent<AudioSource>().clip = sp3;
+        GetComponent<AudioSource>().Play();
+        StartCoroutine(timer(7f));
+        print("timepassed");
+        Instantiate(theEnemy);
+        theEnemy.transform.position = Random.insideUnitCircle * 5;
+    }
+
+    IEnumerator timer(float time)
     {
         yield return new WaitForSeconds(time);
     }

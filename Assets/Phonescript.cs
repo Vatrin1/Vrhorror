@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class Phonescript : MonoBehaviour
 {
-    public int pretime;
-    public int aftertime;
     private bool playingring = false;
     private bool playingcall = false;
 
