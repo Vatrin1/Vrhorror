@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1782078895592057669}
   - component: {fileID: 1782078895592057668}
   - component: {fileID: 1782078895592057689}
-  - component: {fileID: 1782078895592057694}
   - component: {fileID: 7088074530203671055}
   - component: {fileID: 394829993304107231}
   m_Layer: 0
@@ -257,20 +256,6 @@ MonoBehaviour:
   m_AddDefaultGrabTransformers: 1
   leftAttachTransform: {fileID: 0}
   rightAttachTransform: {fileID: 0}
---- !u!114 &1782078895592057694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782078895592057670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a120108c58330468251c0305d414c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TouchedObject: 0
-  check: 0
 --- !u!114 &7088074530203671055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,8 +476,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.1, z: 0.4}
-  m_Center: {x: 0.08, y: 0.08, z: 0}
+  m_Size: {x: 0.25, y: 0.2, z: 0.4}
+  m_Center: {x: 0.08, y: 0.02, z: 0}
 --- !u!4 &2247734012989418484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4b5a686ea47175845adc139a6273ec0c, type: 3}
